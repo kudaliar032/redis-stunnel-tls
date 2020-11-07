@@ -1,12 +1,13 @@
 version: "3.7"
 services:
-  {site-b}:
+  ${site-b}:
     build:
       context: ./
       dockerfile: Dockerfile
-    image: {site-b}
-    container_name: {site-b}
+    image: ${site-b}
+    container_name: ${site-b}
     restart: unless-stopped
     network_mode: bridge
     ports:
       - '6371:6379'
+    command: sh -c "stunnel /stunnel.conf"

@@ -1,16 +1,13 @@
 version: "3.7"
 services:
-  {site-a}:
+  ${site-a}:
     build:
       context: ./
       dockerfile: Dockerfile
-    image: {site-a}
-    container_name: {site-a}
+    image: ${site-a}
+    container_name: ${site-a}
     restart: unless-stopped
     network_mode: bridge
-    volumes:
-      - ~/certs:/certs
-      - ./stunnel.conf:/etc/stunnel/stunnel.conf
     ports:
       - '6371:6379'
-    command: redis-server --requirepass {mypassword}
+    command: sh -c "redis-server --requirepass ${mypassword} && stunnel /stunnel.conf"
