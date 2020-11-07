@@ -3,10 +3,10 @@ FROM alpine:latest
 RUN apk update && \
     apk add --no-cache stunnel
 
-ADD ../certs/certs.pem \
-    /etc/stunnel/cert.pem
+COPY private.pem /
 
-ADD ./stunnel.conf \
-    /etc/stunnel/stunnel.conf
+RUN chmod 640 /private.pem
+
+ADD ./stunnel.conf /stunnel.conf
 
 EXPOSE 6379

@@ -8,8 +8,5 @@ services:
     container_name: {site-b}
     restart: unless-stopped
     network_mode: bridge
-    volumes:
-      - ../certs:/certs
-      - ./stunnel.conf:/etc/stunnel/stunnel.conf
     ports:
       - '6371:6379'
