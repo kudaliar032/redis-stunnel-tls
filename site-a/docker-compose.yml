@@ -8,6 +8,9 @@ services:
     container_name: ${site-a}
     restart: unless-stopped
     network_mode: bridge
+    volumes:
+      - ../certs:/certs
+      - ./stunnel.conf:/stunnel.conf
     ports:
       - '6371:6379'
     command: sh -c "redis-server --requirepass ${mypassword} && stunnel /stunnel.conf"
